@@ -12,3 +12,4 @@ spec:
     - containerPort: 32210
   - name: gerador-container
     image: pdrgbr/playlists-recommender:0.4
+    terminationGracePeriodSeconds: 900
