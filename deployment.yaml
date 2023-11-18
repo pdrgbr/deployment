@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pedroribeiro-playlist-recommender-pod
+  labels:
+    app: pedroribeiro-playlist-recommender-pod
+spec:
+  containers:
+  - name: api-container
+    image: pdrgbr/flask-api:0.1
+    ports:
+    - containerPort: 32210
+  - name: gerador-container
+    image: pdrgbr/playlists-recommender:0.1
