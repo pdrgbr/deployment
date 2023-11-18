@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pedroribeiro-playlist-recommender-pod
+  labels:
+    app: pedroribeiro-playlist-recommender-pod
+spec:
+  containers:
+  - name: api-container
+    image: pdrgbr/flask-api:0.1
+    ports:
+    - containerPort: 32210
+  - name: gerador-container
+    image: pdrgbro/playlists-recommender:0.1
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pedroribeiro-playlist-recommender-service
+spec:
+  selector:
+    app: pedroribeiro-playlist-recommender-pod
+  ports:
+    - protocol: "TCP"
+      port: 32210
+      targetPort: 32210
+  type: LoadBalancer
