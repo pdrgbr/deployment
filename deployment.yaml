@@ -7,8 +7,8 @@ metadata:
 spec:
   containers:
   - name: api-container
-    image: pdrgbr/flask-api:0.1
+    image: pdrgbr/flask-api:0.2
     ports:
     - containerPort: 32210
   - name: gerador-container
-    image: pdrgbr/playlists-recommender:0.2
+    image: pdrgbr/playlists-recommender:0.3
