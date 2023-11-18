@@ -1,30 +1,25 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: pedroribeiro-playlist-recommender-deployment
+  name: pedroribeiro-playlist-recommender-pod
   labels:
     app: pedroribeiro-playlist-recommender-pod
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: pedroribeiro-playlist-recommender-pod
-  template:
-    metadata:
-      labels:
-        app: pedroribeiro-playlist-recommender-pod
-    spec:
-      containers:
-      - name: api-container
-        image: pdrgbr/flask-api:0.2
-        ports:
-        - containerPort: 32210
-        volumeMounts:
-        - name: project2-pv-pedroribeiro
-          mountPath: /home/pedroribeiro/project2-pv
-      - name: gerador-container
-        image: pdrgbr/playlists-recommender:0.4
-        volumeMounts:
-        - name: project2-pv-pedroribeiro
-          mountPath: /home/pedroribeiro/project2-pv
-      terminationGracePeriodSeconds: 900
+  containers:
+  - name: api-container
+    image: pdrgbr/flask-api:0.2
+    ports:
+    - containerPort: 32210
+    volumeMounts:
+    - name: project2-pv-pedroribeiro
+      mountPath: /home/pedroribeiro/project2-pv
+  - name: gerador-container
+    image: pdrgbr/playlists-recommender:0.4
+    volumeMounts:
+    - name: project2-pv-pedroribeiro
+      mountPath: /home/pedroribeiro/project2-pv
+  terminationGracePeriodSeconds: 900
+  volumes:
+  - name: project2-pv-pedroribeiro
+    persistentVolumeClaim:
+      claimName: project2-pvc-pedroribeiro
