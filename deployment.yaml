@@ -22,11 +22,6 @@ spec:
         volumeMounts:
         - name: project2-pv-pedroribeiro
           mountPath: /home/pedroribeiro/project2-pv
-      - name: gerador-container
-        image: pdrgbr/playlists-recommender:0.4
-        volumeMounts:
-        - name: project2-pv-pedroribeiro
-          mountPath: /home/pedroribeiro/project2-pv
       terminationGracePeriodSeconds: 900
       volumes:
       - name: project2-pv-pedroribeiro
